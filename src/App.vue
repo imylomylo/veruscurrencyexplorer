@@ -1,15 +1,17 @@
+
+
+<template>
+  <v-app color="primary">
+  <TheNavigation></TheNavigation>
+  <v-container>
+    <router-view></router-view>
+  </v-container>
+</v-app>
+</template>
+
 <script setup>
 import TheNavigation from './components/TheNavigation.vue';
 
-
 </script>
-
-<template>
-  <TheNavigation></TheNavigation>
-  <div class="container">
-    <router-view></router-view>
-  </div>
-</template>
-
 <style scoped>
 </style>

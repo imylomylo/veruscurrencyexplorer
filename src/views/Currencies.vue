@@ -3,9 +3,9 @@
 </script>
 
 <template>
-  <div class="container">
+  <v-container>
     <h1>Currencies</h1>
-  </div>
+  </v-container>
 </template>
 
 <style scoped>

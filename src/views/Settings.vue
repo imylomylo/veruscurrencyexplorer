@@ -3,9 +3,9 @@
 </script>
 
 <template>
-  <div class="container">
+  <v-container>
     <h1>Settings</h1>
-  </div>
+  </v-container>
 </template>
 
 <style scoped>
