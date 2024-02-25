@@ -1,20 +1,36 @@
 <script setup>
-import {ref} from 'vue'
+import { ref } from 'vue';
+import { useStore } from 'vuex';
+
+const rpcValue = ref('');
+const store = useStore();
+
+const saveRpc = () => {
+  store.commit('updateRpcValue', rpcValue.value);
+  rpcValue.value = ref('');
+};
+
+const numberRule = (value) => {
+  const isValid = /^\d+$/.test(value); // Use regex to check if value contains only digits
+  return isValid || 'Only numbers are allowed';
+};
 </script>
 
 <template>
-  <v-container class="mx-auto">
     <v-hover v-slot="{ isHovering, props }">
     <v-card variant="outlined" v-bind="props" :class="`elevation-${isHovering ? 24 : 6}`" class="mx-auto pa-6 transition-swing max-width">
       <v-card-title>
         RPC HOST
       </v-card-title>
-            <v-text-field label="Enter Your RPC"></v-text-field> 
-            <v-btn class="">Save</v-btn>    
+            <v-text-field v-model="rpcValue.value"
+                label="Enter Your RPC"
+                type="number" 
+                :rules="[numberRule]"></v-text-field> 
+            <v-btn @click="saveRpc">Save</v-btn>    
     </v-card>
     </v-hover>
-  </v-container>
 </template>
 
 <style scoped>
+
 </style>

@@ -3,10 +3,12 @@
 <template>
   <v-app color="primary">
   <TheNavigation></TheNavigation>
-  <v-container class="content-container">
+  <v-main>
+  <v-container fluid>
     <router-view>
     </router-view>
   </v-container>
+  </v-main>
 </v-app>
 </template>
 
@@ -15,6 +17,10 @@ import TheNavigation from './components/TheNavigation.vue';
 
 </script>
 <style scoped>
+.content-container-two{
+  min-width: 100%;
+  margin: 0 auto;
+}
 .content-container {
   display: flex;
   justify-content: center;

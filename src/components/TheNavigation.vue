@@ -7,7 +7,7 @@
         </v-col>
 
         <v-col cols="4" class="text-center">
-          <v-toolbar-title>RPC: 192.168.1.1</v-toolbar-title>
+          <v-toolbar-title>RPC: {{ rpcValue }}</v-toolbar-title>
         </v-col>
 
         <v-col cols="4" class="text-right">
@@ -24,6 +24,7 @@
     </v-app-bar>
 
     <!-- Navigation Drawer -->
+    <v-expand-transition>
     <v-navigation-drawer :model-value="drawer" temporary class="navdrawer" :icon="menubar">
       <v-list>
         <router-link to="/" class="nav-link" :class="{ 'active-menu': $route.path === '/' }">
@@ -46,13 +47,19 @@
         </router-link>
       </v-list>
     </v-navigation-drawer>
+    </v-expand-transition>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import { computed } from 'vue';
+import { useStore } from 'vuex';
 
 const drawer = ref(false);
+const store = useStore();
+const rpcValue = computed(() => store.state.rpcValue);
+
 </script>
 
 <style scoped>
@@ -63,7 +70,8 @@ const drawer = ref(false);
 }
 
 .active-menu {
-  color: grey;
+  font-weight: bold;
+  font-size: large;
 }
 
 .navdrawer {
