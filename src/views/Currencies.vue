@@ -12,7 +12,7 @@ import {ref} from 'vue'
         Lorem Ispetem
       </v-card-title>
       <v-data-table></v-data-table>     
-      <v-textarea label="Your JSON HERE"></v-textarea>
+      <v-textarea label="Your JSON HERE" prepend-inner-icon="mdi-code-json"></v-textarea>
 
     </v-card>
     </v-hover>

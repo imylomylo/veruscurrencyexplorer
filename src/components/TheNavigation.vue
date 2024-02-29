@@ -11,7 +11,7 @@
         </v-col>
 
         <v-col cols="4" class="text-right">
-          <v-toolbar-items>
+          <v-toolbar-items class="hidden-sm-and-down">
             <router-link to="/" class="nav-link" :class="{ 'active-menu': $route.path === '/' }">Dashboard</router-link>
             <router-link to="/currencies" class="nav-link" :class="{ 'active-menu': $route.path === '/currencies' }">Currencies</router-link>
             <router-link to="/settings" class="nav-link" :class="{ 'active-menu': $route.path === '/settings' }">Settings</router-link>
@@ -41,7 +41,7 @@
         </router-link>
         <router-link to="/settings" class="nav-link" :class="{ 'active-menu': $route.path === '/settings' }">
           <v-list-item>
-            <v-icon>mdi-settings</v-icon>
+            <v-icon>mdi-cog</v-icon>
             Settings
           </v-list-item>
         </router-link>
