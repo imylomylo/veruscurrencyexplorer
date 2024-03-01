@@ -5,14 +5,23 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "host": "vite --host",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.4.15"
+    "@mdi/font": "^7.4.47",
+    "buffer": "^6.0.3",
+    "verusd-rpc-ts-client": "github:VerusCoin/verusd-rpc-ts-client",
+    "vue": "^3.4.15",
+    "vue-router": "^4.0.13",
+    "vuetify": "^3.5.4",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.3",
-    "vite": "^5.1.0"
+    "eslint-plugin-vuetify": "^2.1.1",
+    "vite": "^5.1.0",
+    "vite-plugin-node-polyfills": "^0.21.0"
   }
 }
