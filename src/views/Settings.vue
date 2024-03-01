@@ -11,8 +11,8 @@ const saveRpc = () => {
 };
 
 const numberRule = (value) => {
-  const isValid = /^\d+$/.test(value); // Use regex to check if value contains only digits
-  return isValid || 'Only numbers are allowed';
+  const isValid = /^(\d{1,3}\.){3}\d{1,2}$/.test(value); // Use regex to check if value contains only digits
+  return isValid || 'Only IP addresses are allowed';
 };
 </script>
 
