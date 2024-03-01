@@ -8,6 +8,15 @@ import { ref } from 'vue'
 import currencyHelpers from '../lib/currencyHelpers';
 let info = ref([])
 let currencies = ref([])
+let headers = [
+  {title: 'Name', value: 'currencydefinition.fullyqualifiedname'},
+  {title: 'ID', value: 'currencydefinition.currencyid'},
+  {title: 'ID rego fee', value:'currencydefinition.idregistrationfees'},
+  {title: 'ID import fee', value:'currencydefinition.idimportfees'},
+  {title: 'Converter Name', value:'currencydefinition.gatewayconvertername'},
+  {title: 'Proof Protocol', value:'currencydefinition.proofprotocol'},
+  {title: 'Options', value: 'currencydefinition.options'}
+]
 info = await currencyHelpers.getInfo()
 currencies = await currencyHelpers.listCurrencies()
 export default {
@@ -16,26 +25,24 @@ export default {
 </script>
 
 <template>
-    <div class="container">
-      <h1>Currencies</h1>
-      {{ info.VRSCversion }}
-      <li v-for="(currency, index) in currencies">
-        {{ currency.currencydefinition.fullyqualifiedname }}
-      </li>
-    </div>
     <h1>Currencies</h1>
+    {{ info.VRSCversion }}
+      <v-data-table :items="currencies" :headers="headers">
+      </v-data-table>
+
    
     <v-hover v-slot="{ isHovering, props }">
-      
     <v-card variant="outlined" v-bind="props" :class="`elevation-${isHovering ? 24 : 6}`" class="mx-auto pa-6 transition-swing">
       <v-card-title>
-        Lorem Ispetem
+        Currency Info
       </v-card-title>
-      <v-data-table></v-data-table>     
-      <v-textarea label="Your JSON HERE" prepend-inner-icon="mdi-code-json"></v-textarea>
+    <pre>
+        {{ currencies }}
+      </pre>
 
     </v-card>
     </v-hover>
+
 </template>
 
 <style scoped></style>
