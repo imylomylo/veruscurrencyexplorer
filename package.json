@@ -5,10 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "host": "vite --host",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "buffer": "^6.0.3",
+    "verusd-rpc-ts-client": "github:VerusCoin/verusd-rpc-ts-client",
     "@mdi/font": "^7.4.47",
     "vue": "^3.4.15",
     "vue-router": "^4.0.13",
@@ -17,6 +20,8 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.3",
+    "vite": "^5.1.0",
+    "vite-plugin-node-polyfills": "^0.21.0"
     "eslint-plugin-vuetify": "^2.1.1",
     "vite": "^5.1.0"
   }
