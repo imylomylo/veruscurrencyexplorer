@@ -19,8 +19,11 @@ const saveRpc = () => {
 </script>
 
 <template>
+  <v-layout>
+    <v-row>
+      <v-col>
     <v-hover v-slot="{ isHovering, props }">
-    <v-card variant="outlined" v-bind="props" :class="`elevation-${isHovering ? 24 : 6}`" class="mx-auto pa-6 transition-swing max-width">
+    <v-container variant="outlined" v-bind="props" :class="`elevation-${isHovering ? 24 : 6}`" class="mx-auto pa-6 transition-swing max-width">
       <v-card-title>
         RPC HOST
       </v-card-title>
@@ -28,8 +31,11 @@ const saveRpc = () => {
                 label="Enter Your RPCd"
                 type="string" ></v-text-field>
             <v-btn @click="saveRpc">Save</v-btn>    
-    </v-card>
+    </v-container>
     </v-hover>
+    </v-col>
+    </v-row>
+    </v-layout>
 </template>
 
 <style scoped>
