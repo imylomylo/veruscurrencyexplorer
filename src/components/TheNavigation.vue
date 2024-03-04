@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar color="primary">
+    <v-app-bar color="#3165D4">
       <v-row align="center">
         <v-col cols="4">
           <v-toolbar-title>Verus Currency Explorer</v-toolbar-title>
@@ -92,7 +92,7 @@ const rpcValue = computed(() => store.state.rpcValue);
   font-size: large;
 }
 .smaller-menu{
-  background-color: blue;
+  background-color: #3165D4;
   color: white;
 }
 .navdrawer {

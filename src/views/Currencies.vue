@@ -21,9 +21,8 @@ const expanded = ref([]);
 })();
 
 const toggleExpansion = (item) => {
-  expandedRow.value = expandedRow.value === item ? null : item;
+  expanded.value = expanded.value === item ? null : item;
 };
-
 </script>
 
 <template>
@@ -31,37 +30,47 @@ const toggleExpansion = (item) => {
     <v-row>
       <v-col>
     <h1>Currencies</h1>
-    <v-hover v-slot="{ isHovering, props }">
-    <v-container variant="outlined" v-bind="props" :class="`elevation-${isHovering ? 24 : 6}`" class="mx-auto pa-6 transition-swing overflow-x-auto">
-       <v-data-table 
-       :items="currencies" 
-       :headers="headers" 
-       @click:row="toggleExpansion"
-       v-model:expanded="expanded"
-       show-expand>
-        <!-- Your expanded card content here -->
-        <template v-slot:top>
-      <v-toolbar flat>
-        <v-toolbar-title>{{ info.VRSCversion }}</v-toolbar-title>
-      </v-toolbar>
-    </template>
-          <template v-slot:expanded-row="{ currencies, headers }">
-            <table>
+    <v-container class="mx-auto pa-6 container-ho overflow-x-auto">
+      <v-data-table 
+      :items="currencies" 
+      :headers="headers" 
+      @click:row="toggleExpansion"
+      v-model:expanded="expanded"
+      show-expand
+    >
+      <!-- expanded card content -->
+      <template v-slot:top>
+        <v-toolbar flat>
+          <v-toolbar-title>Version {{ info.VRSCversion }}</v-toolbar-title>
+        </v-toolbar>
+      </template>
+
+        <template v-slot:expanded-row="{ item }">
           <tr>
-        <td :colspan="currencies.length">
-          More info about {{ headers.title }}
-        </td>
-      </tr>
-      </table>
-    </template>
+            <td :colspan="headers.length">
+              More info about
+            </td>
+          </tr>
+        </template>
     </v-data-table>
 
     </v-container>
-    </v-hover>
     </v-col>
     </v-row>
     </v-layout>
 
 </template>
 
-<style scoped></style>
+<style scoped>
+.container-ho {
+  border: 2px solid transparent; /* Set initial border */
+  transition: border-color 0.3s ease-in-out; /* Smooth transition for border color */
+}
+
+/* Add hover effect */
+.container-ho:hover {
+  animation-play-state: paused; 
+  border: 2px solid transparent; /* Set initial border */
+  border-color: #3165D4;/* Pause the animation on hover */
+}
+</style>
