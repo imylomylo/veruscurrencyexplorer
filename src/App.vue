@@ -1,10 +1,10 @@
 
 
 <template>
-  <v-app color="primary">
+  <v-app>
   <TheNavigation></TheNavigation>
   <v-main>
-  <v-container fluid>
+  <v-container>
     <router-view>
     </router-view>
   </v-container>
@@ -17,14 +17,10 @@ import TheNavigation from './components/TheNavigation.vue';
 
 </script>
 <style scoped>
-.content-container-two{
-  min-width: 100%;
-  margin: 0 auto;
-}
-.content-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh; /* Ensures the container takes the full height of the viewport */
+.grad-class{
+  background: #3a7bd5;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #3a6073, #3a7bd5);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #3a6073, #3a7bd5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 </style>

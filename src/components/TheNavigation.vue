@@ -33,8 +33,8 @@
         </v-list-item>
       </v-list> 
       </div>
-      
     </v-menu>
+    <v-btn><v-icon>mdi-login</v-icon></v-btn>
     <v-btn icon class="hidden-sm-and-up" @click="drawer = !drawer">
             <v-icon>mdi-menu</v-icon>
       </v-btn>

@@ -22,7 +22,7 @@ const saveRpc = () => {
   <v-layout>
     <v-row>
       <v-col>
-    <v-container class="mx-auto pa-6 container-ho">
+    <v-container class="mx-auto pa-6">
       <v-card-title>
         RPC HOST
       </v-card-title>
@@ -37,15 +37,5 @@ const saveRpc = () => {
 </template>
 
 <style scoped>
-.container-ho {
-  border: 2px solid transparent; /* Set initial border */
-  transition: border-color 0.3s ease-in-out; /* Smooth transition for border color */
-}
 
-/* Add hover effect */
-.container-ho:hover {
-  animation-play-state: paused; 
-  border: 2px solid transparent; /* Set initial border */
-  border-color: #3165D4;/* Pause the animation on hover */
-}
 </style>

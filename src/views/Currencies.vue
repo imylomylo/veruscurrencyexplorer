@@ -13,7 +13,7 @@ const headers = [
   { title: 'Proof Protocol', value: 'currencydefinition.proofprotocol' },
   { title: 'Options', value: 'currencydefinition.options' }
 ];
-const expanded = ref([]);
+const expanded = ref(null);
 
 (async () => {
   info.value = await currencyHelpers.getInfo();
@@ -21,7 +21,12 @@ const expanded = ref([]);
 })();
 
 const toggleExpansion = (item) => {
-  expanded.value = expanded.value === item ? null : item;
+   // Check if the clicked item is already expanded
+   const isExpanded = expanded.value === item;
+
+// If it's expanded, collapse it (set to null)
+// If it's not expanded, expand it
+expanded.value = isExpanded ? null : item;
 };
 </script>
 
@@ -30,7 +35,7 @@ const toggleExpansion = (item) => {
     <v-row>
       <v-col>
     <h1>Currencies</h1>
-    <v-container class="mx-auto pa-6 container-ho overflow-x-auto">
+    <v-container class="mx-auto pa-6">
       <v-data-table 
       :items="currencies" 
       :headers="headers" 
@@ -48,7 +53,7 @@ const toggleExpansion = (item) => {
         <template v-slot:expanded-row="{ item }">
           <tr>
             <td :colspan="headers.length">
-              More info about
+              More info about {{ headers}}
             </td>
           </tr>
         </template>
@@ -62,15 +67,5 @@ const toggleExpansion = (item) => {
 </template>
 
 <style scoped>
-.container-ho {
-  border: 2px solid transparent; /* Set initial border */
-  transition: border-color 0.3s ease-in-out; /* Smooth transition for border color */
-}
 
-/* Add hover effect */
-.container-ho:hover {
-  animation-play-state: paused; 
-  border: 2px solid transparent; /* Set initial border */
-  border-color: #3165D4;/* Pause the animation on hover */
-}
 </style>
