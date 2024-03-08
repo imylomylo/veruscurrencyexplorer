@@ -13,21 +13,12 @@ const headers = [
   { title: 'Proof Protocol', value: 'currencydefinition.proofprotocol' },
   { title: 'Options', value: 'currencydefinition.options' }
 ];
-const expanded = ref(null);
 
 (async () => {
   info.value = await currencyHelpers.getInfo();
   currencies.value = await currencyHelpers.listCurrencies();
 })();
 
-const toggleExpansion = (item) => {
-   // Check if the clicked item is already expanded
-   const isExpanded = expanded.value === item;
-
-// If it's expanded, collapse it (set to null)
-// If it's not expanded, expand it
-expanded.value = isExpanded ? null : item;
-};
 </script>
 
 <template>
@@ -39,8 +30,7 @@ expanded.value = isExpanded ? null : item;
       <v-data-table 
       :items="currencies" 
       :headers="headers" 
-      @click:row="toggleExpansion"
-      v-model:expanded="expanded"
+      item-value="title"
       show-expand
     >
       <!-- expanded card content -->
@@ -50,10 +40,10 @@ expanded.value = isExpanded ? null : item;
         </v-toolbar>
       </template>
 
-        <template v-slot:expanded-row="{ item }">
+        <template v-slot:expanded-row=" item ">
           <tr>
             <td :colspan="headers.length">
-              More info about {{ headers}}
+              More info about {{ item.index }}
             </td>
           </tr>
         </template>

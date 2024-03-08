@@ -1,5 +1,9 @@
 <script setup>
 import {ref} from 'vue'
+import sampleData from '../lib/currencyDefinitions.json'; // Import the JSON file
+
+const sampa = ref(sampleData.sample);
+
 </script>
 
 <template>
@@ -14,7 +18,7 @@ import {ref} from 'vue'
       <v-card-text>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
         Harum maiores modi quidem veniam, expedita quis laboriosam, ullam facere 
-        adipisci,iusto, 
+        adipisci,iusto, <b> {{ sampa }}</b>
         voluptate sapiente corrupti asperiores rem nemo numquam fuga ab at.
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum 
         maiores modi quidem veniam, expedita quis laboriosam, ullam facere adipisci, iusto, 
