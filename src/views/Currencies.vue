@@ -13,6 +13,7 @@ const headers = [
   { title: 'Proof Protocol', value: 'currencydefinition.proofprotocol' },
   { title: 'Options', value: 'currencydefinition.options' }
 ];
+const expand = ref([]);
 
 (async () => {
   info.value = await currencyHelpers.getInfo();
@@ -28,9 +29,9 @@ const headers = [
     <h1>Currencies</h1>
     <v-container class="mx-auto pa-6">
       <v-data-table 
+      v-model:expanded="expand"
       :items="currencies" 
       :headers="headers" 
-      item-value="title"
       show-expand
     >
       <!-- expanded card content -->
@@ -40,7 +41,7 @@ const headers = [
         </v-toolbar>
       </template>
 
-        <template v-slot:expanded-row=" item ">
+        <template v-slot:expanded-row=" headers, item ">
           <tr>
             <td :colspan="headers.length">
               More info about {{ item.index }}

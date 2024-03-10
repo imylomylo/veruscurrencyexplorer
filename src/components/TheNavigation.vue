@@ -34,7 +34,11 @@
       </v-list> 
       </div>
     </v-menu>
-    <v-btn><v-icon>mdi-login</v-icon></v-btn>
+    <v-btn>            
+      <router-link to="/login" class="nav-link">
+        <v-icon>mdi-login</v-icon>
+        </router-link>
+    </v-btn>
     <v-btn icon class="hidden-sm-and-up" @click="drawer = !drawer">
             <v-icon>mdi-menu</v-icon>
       </v-btn>
