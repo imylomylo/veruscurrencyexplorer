@@ -27,14 +27,16 @@ const expand = ref([]);
     <v-row>
       <v-col>
     <h1>Currencies</h1>
-    <v-container class="mx-auto pa-6">
+    <v-container class="mx-auto pa-6 ovflvdt">
       <v-data-table 
       v-model:expanded="expand"
       :items="currencies" 
       :headers="headers" 
       show-expand
+      dense
+      hide-default-header
     >
-      <!-- expanded card content -->
+  
       <template v-slot:top>
         <v-toolbar flat>
           <v-toolbar-title>Version {{ info.VRSCversion }}</v-toolbar-title>
@@ -58,5 +60,8 @@ const expand = ref([]);
 </template>
 
 <style scoped>
-
+.ovflvdt
+{
+  max-width: 500px;
+}
 </style>
