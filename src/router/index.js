@@ -10,22 +10,26 @@ const routes = [
   {
     path: '/',
     name: 'Dashboard',
-    component: Dashboard
+    component: Dashboard,
+    meta: {viewName: "Dashboard"}
   },
   {
     path: '/settings',
     name: 'Settings',
-    component: Settings
+    component: Settings,
+    meta: {viewName: 'Settings'}
   },
   {
     path: '/currencies',
     name: 'Currencies',
-    component: CurrenciesVue
+    component: CurrenciesVue,
+    meta: {viewName: "Currencies"}
   },
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
+    meta: {viewName: "Login"}
   }
 ];
 

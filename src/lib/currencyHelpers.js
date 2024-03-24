@@ -30,12 +30,12 @@ export async function getCurrency() {
     }
 }
 
-export async function getCurrencyState() {
+export async function getCurrencyState(currencyName) {
     try {
         console.log("getCurrencyState")
         // TODO removed await; how to make it asynchronous & what benefit
         // const res = await verusd.getCurrency('bridge.veth');
-        const res = await verusd.getCurrencyState('bridge.veth');
+        const res = await verusd.getCurrencyState(currencyName);
         console.log(res.result)
         return res.result
     } catch (error){

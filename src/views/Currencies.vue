@@ -1,3 +1,39 @@
+<template>
+  <v-layout>
+    <v-row>
+      <v-col>
+        <h1>Currencies</h1>
+        <v-container class="mx-auto pa-6">
+          <v-data-table 
+            :items="currencies" 
+            :headers="headers" 
+            dense
+          >
+
+            <template v-slot:top>
+              <v-toolbar flat>
+                <v-toolbar-title>Version {{ info.VRSCversion }}</v-toolbar-title>
+              </v-toolbar>
+            </template>
+           
+            <template v-slot="{ items }">
+             <tbody>
+              <tr v-for="item in items" :key="item.currencydefinition.currencyid" @click="handleCurrencyClick(item)">
+                <td v-for="(header, index) in headers" :key="index">
+          <!-- Access nested properties properly -->
+                  {{ getNestedValue(item, header.value) }}
+                </td>
+              </tr>
+            </tbody>
+            </template>
+
+          </v-data-table>
+        </v-container>
+      </v-col>
+    </v-row>
+  </v-layout>
+</template>
+
 <script setup>
 import { ref } from 'vue'
 import currencyHelpers from '../lib/currencyHelpers';
@@ -13,55 +49,24 @@ const headers = [
   { title: 'Proof Protocol', value: 'currencydefinition.proofprotocol' },
   { title: 'Options', value: 'currencydefinition.options' }
 ];
-const expand = ref([]);
+const selectedCurrency = ref({});
 
+const handleCurrencyClick = (currency) => {
+  console.log("Clicked currency:", currency);
+  selectedCurrency.value = currency;
+};
+
+
+const getNestedValue = (obj, path) => {
+  // Split the path into keys
+  const keys = path.split('.');
+  // Traverse the object using keys to access nested properties
+  return keys.reduce((acc, key) => acc[key], obj);
+};
+
+// Fetch data on component mount
 (async () => {
   info.value = await currencyHelpers.getInfo();
   currencies.value = await currencyHelpers.listCurrencies();
 })();
-
 </script>
-
-<template>
-  <v-layout>
-    <v-row>
-      <v-col>
-    <h1>Currencies</h1>
-    <v-container class="mx-auto pa-6 ovflvdt">
-      <v-data-table 
-      v-model:expanded="expand"
-      :items="currencies" 
-      :headers="headers" 
-      show-expand
-      dense
-      hide-default-header
-    >
-  
-      <template v-slot:top>
-        <v-toolbar flat>
-          <v-toolbar-title>Version {{ info.VRSCversion }}</v-toolbar-title>
-        </v-toolbar>
-      </template>
-
-        <template v-slot:expanded-row=" headers, item ">
-          <tr>
-            <td :colspan="headers.length">
-              More info about {{ item.index }}
-            </td>
-          </tr>
-        </template>
-    </v-data-table>
-
-    </v-container>
-    </v-col>
-    </v-row>
-    </v-layout>
-
-</template>
-
-<style scoped>
-.ovflvdt
-{
-  max-width: 500px;
-}
-</style>
