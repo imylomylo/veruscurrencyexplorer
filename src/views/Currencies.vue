@@ -9,25 +9,27 @@
             :headers="headers" 
             dense
           >
-
             <template v-slot:top>
               <v-toolbar flat>
                 <v-toolbar-title>Version {{ info.VRSCversion }}</v-toolbar-title>
               </v-toolbar>
             </template>
-           
-            <template v-slot="{ items }">
-             <tbody>
-              <tr v-for="item in items" :key="item.currencydefinition.currencyid" @click="handleCurrencyClick(item)">
-                <td v-for="(header, index) in headers" :key="index">
-          <!-- Access nested properties properly -->
-                  {{ getNestedValue(item, header.value) }}
-                </td>
-              </tr>
-            </tbody>
-            </template>
 
+            <!-- Display currency ID and attach click event -->
+            <template v-slot:item.currencydefinition.fullyqualifiedname="{ item }">
+              <span @click="handleCurrencyClick(item.currencydefinition.fullyqualifiedname)">
+                {{ item.currencydefinition.fullyqualifiedname }}
+              </span>
+            </template>
           </v-data-table>
+
+          <!-- Display selected currency details -->
+          <div v-if="selectedCurrency">
+            <h2>Selected Currency Details</h2>
+            <textarea v-model="currencyDetails" rows="5" cols="50">
+            {{ selectedCurrency }}
+            </textarea>
+          </div>
         </v-container>
       </v-col>
     </v-row>
@@ -49,24 +51,19 @@ const headers = [
   { title: 'Proof Protocol', value: 'currencydefinition.proofprotocol' },
   { title: 'Options', value: 'currencydefinition.options' }
 ];
-const selectedCurrency = ref({});
+const selectedCurrency = ref(null);
+const currencyDetails = ref('');
 
-const handleCurrencyClick = (currency) => {
-  console.log("Clicked currency:", currency);
-  selectedCurrency.value = currency;
-};
-
-
-const getNestedValue = (obj, path) => {
-  // Split the path into keys
-  const keys = path.split('.');
-  // Traverse the object using keys to access nested properties
-  return keys.reduce((acc, key) => acc[key], obj);
-};
-
-// Fetch data on component mount
 (async () => {
   info.value = await currencyHelpers.getInfo();
   currencies.value = await currencyHelpers.listCurrencies();
 })();
+
+const handleCurrencyClick = (currency) => {
+  const fullyQualifiedName = currency.currencydefinition.fullyqualifiedname;
+  console.log("Clicked currency:", fullyQualifiedName);
+  selectedCurrency.value = currency;
+};
+
+
 </script>
