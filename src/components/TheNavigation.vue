@@ -7,7 +7,7 @@
         </v-col>
 
         <v-col cols="4" class="text-center">
-          <v-toolbar-title>RPC: {{ rpcValue }}</v-toolbar-title>
+          <v-toolbar-title>RPC: {{ rpcValue }} Verison: {{ versionInfo }}</v-toolbar-title>
         </v-col>
 
   <v-col cols="4" class="text-right">
@@ -74,14 +74,14 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, version } from 'vue';
 import { computed } from 'vue';
 import { useStore } from 'vuex';
 
 const drawer = ref(false);
 const store = useStore();
 const rpcValue = computed(() => store.state.rpcValue);
-
+const versionInfo = computed(() => store.state.versionStatus)
 </script>
 
 <style scoped>

@@ -17,7 +17,7 @@
 
             <!-- Display currency ID and attach click event -->
             <template v-slot:item.currencydefinition.fullyqualifiedname="{ item }">
-              <span @click="handleCurrencyClick(item.currencydefinition.fullyqualifiedname)">
+              <span @click="handleCurrencyClick(item)">
                 {{ item.currencydefinition.fullyqualifiedname }}
               </span>
             </template>
@@ -26,7 +26,7 @@
           <!-- Display selected currency details -->
           <div v-if="selectedCurrency">
             <h2>Selected Currency Details</h2>
-            <textarea v-model="currencyDetails" rows="5" cols="50">
+            <textarea rows="5" cols="50">
             {{ selectedCurrency }}
             </textarea>
           </div>
