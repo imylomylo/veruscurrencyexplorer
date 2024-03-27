@@ -17,7 +17,7 @@
 
             <!-- Display currency ID and attach click event -->
             <template v-slot:item.currencydefinition.fullyqualifiedname="{ item }">
-              <span @click="handleCurrencyClick(item.currencydefinition.fullyqualifiedname)">
+              <span @click="handleCurrencyClick(item)">
                 {{ item.currencydefinition.fullyqualifiedname }}
               </span>
             </template>
@@ -60,10 +60,12 @@ const currencyDetails = ref('');
 })();
 
 const handleCurrencyClick = (currency) => {
+  console.log(currency.currencydefinition.currencyid)
   const fullyQualifiedName = currency.currencydefinition.fullyqualifiedname;
   console.log("Clicked currency:", fullyQualifiedName);
   selectedCurrency.value = currency;
 };
+
 
 
 </script>
