@@ -60,10 +60,12 @@ const currencyDetails = ref('');
 })();
 
 const handleCurrencyClick = (currency) => {
+  console.log(currency.currencydefinition.currencyid)
   const fullyQualifiedName = currency.currencydefinition.fullyqualifiedname;
   console.log("Clicked currency:", fullyQualifiedName);
   selectedCurrency.value = currency;
 };
+
 
 
 </script>
