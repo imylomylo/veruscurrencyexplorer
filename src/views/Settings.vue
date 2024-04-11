@@ -29,7 +29,7 @@ const saveRpc = () => {
             <v-text-field v-model="rpcValue.value"
                 label="Enter Your RPCd"
                 type="string" ></v-text-field>
-            <v-btn @click="saveRpc">Save</v-btn>    
+            <v-btn @click="saveRpc" class="btn">Save</v-btn>    
     </v-container>
     </v-col>
     </v-row>

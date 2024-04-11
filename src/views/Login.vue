@@ -8,7 +8,7 @@
       <input type="text" v-model="username" id="username" required>
       <label for="password">Password:</label>
       <input type="password" v-model="password" id="password" required>
-      <button type="submit">Login</button>
+      <button type="submit" class="btn">Login</button>
     </form>
     
     <button v-if="loggedIn" @click="logout">Logout</button>

@@ -2,7 +2,6 @@
   "name": "verus_currency_explorer",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "host": "vite --host",
@@ -11,7 +10,10 @@
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
+    "autoprefixer": "^10.4.19",
     "buffer": "^6.0.3",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3",
     "verusd-rpc-ts-client": "github:VerusCoin/verusd-rpc-ts-client",
     "vue": "^3.4.15",
     "vue-router": "^4.0.13",
@@ -20,6 +22,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.3",
+    "daisyui": "^4.10.1",
     "eslint-plugin-vuetify": "^2.1.1",
     "vite": "^5.1.0",
     "vite-plugin-node-polyfills": "^0.21.0"
