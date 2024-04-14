@@ -1,63 +1,49 @@
 <template>
-  <v-layout>
-    <v-row>
-      <v-col>
-        <h1>Currencies</h1>
-        <v-container class="mx-auto pa-6">
-          <v-data-table 
-            :items="currencies" 
-            :headers="headers" 
-            dense
-          >
-            <template v-slot:top>
-              <v-toolbar flat>
-                <v-toolbar-title>Version {{ info.VRSCversion }}</v-toolbar-title>
-              </v-toolbar>
-            </template>
-
-            <!-- Display currency ID and attach click event -->
-            <template v-slot:item.currencydefinition.fullyqualifiedname="{ item }">
-              <span @click="handleCurrencyClick(item)">
-                {{ item.currencydefinition.fullyqualifiedname }}
-              </span>
-            </template>
-          </v-data-table>
-
-          <!-- Display selected currency details -->
-          <div v-if="selectedCurrency">
-            <h2>Selected Currency Details</h2>
-            <textarea rows="5" cols="50">
-            {{ selectedCurrency }}
-            </textarea>
-          </div>
-        </v-container>
-      </v-col>
-    </v-row>
-  </v-layout>
+    <div class="overflow-x-auto columns-1">
+      <div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th v-for="header in headers" :key="header.title">{{ header.title }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hover" v-for="currency in currencies" :key="currency.currencydefinition.currencyid">
+            <td @click="handleCurrencyClick(currency)">{{ currency.currencydefinition.fullyqualifiedname }}</td>
+            <td>{{ currency.currencydefinition.currencyid }}</td>
+            <td>{{ currency.currencydefinition.idregistrationfees }}</td>
+            <td>{{ currency.currencydefinition.idimportfees }}</td>
+            <td>{{ currency.currencydefinition.gatewayconvertername }}</td>
+            <td>{{ currency.currencydefinition.proofprotocol }}</td>
+            <td>{{ currency.currencydefinition.options }}</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    <div v-if="selectedCurrency">
+      <h2>Selected Currency Details</h2>
+      <textarea rows="5" cols="50">{{ selectedCurrency }}</textarea>
+    </div>
+    </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue';
 import currencyHelpers from '../lib/currencyHelpers';
 
-const info = ref([]);
+const info = ref({});
 const currencies = ref([]);
 const headers = [
-  { title: 'Name', value: 'currencydefinition.fullyqualifiedname' },
-  { title: 'ID', value: 'currencydefinition.currencyid' },
-  { title: 'ID rego fee', value: 'currencydefinition.idregistrationfees' },
-  { title: 'ID import fee', value: 'currencydefinition.idimportfees' },
-  { title: 'Converter Name', value: 'currencydefinition.gatewayconvertername' },
-  { title: 'Proof Protocol', value: 'currencydefinition.proofprotocol' },
-  { title: 'Options', value: 'currencydefinition.options' }
+  { title: 'Name' },
+  { title: 'ID' },
+  { title: 'ID rego fee' },
+  { title: 'ID import fee' },
+  { title: 'Converter Name' },
+  { title: 'Proof Protocol' },
+  { title: 'Options' }
 ];
 const selectedCurrency = ref(null);
 const currencyDetails = ref('');
-
-(async () => {
-  info.value = await currencyHelpers.getInfo();
-  currencies.value = await currencyHelpers.listCurrencies();
-})();
 
 const handleCurrencyClick = (currency) => {
   console.log(currency.currencydefinition.currencyid)
@@ -66,6 +52,8 @@ const handleCurrencyClick = (currency) => {
   selectedCurrency.value = currency;
 };
 
-
-
+onMounted(async () => {
+  info.value = await currencyHelpers.getInfo();
+  currencies.value = await currencyHelpers.listCurrencies();
+});
 </script>

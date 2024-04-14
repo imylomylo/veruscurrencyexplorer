@@ -1,18 +1,17 @@
 <template>
-  <v-container>
-    <h1 v-if="!loggedIn">Login</h1>
+  <div class="grid-cols-1 flex flex-col space-y-4 items-center">
+    <h1 v-if="!loggedIn" class="text-2xl">Login</h1>
+
     <h1 v-else>Welcome, {{ username }}</h1>
     
-    <form v-if="!loggedIn" @submit.prevent="login">
-      <label for="username">Username:</label>
-      <input type="text" v-model="username" id="username" required>
-      <label for="password">Password:</label>
-      <input type="password" v-model="password" id="password" required>
-      <button type="submit" class="btn">Login</button>
+    <form v-if="!loggedIn" @submit.prevent="login" class="flex flex-col space-y-4">
+      <input type="text" v-model="username" placeholder="Enter Your Username" class="input input-bordered input-primary flex items-center gap-2" required>
+      <input type="password" v-model="password" placeholder="Enter Your Password" class="input input-bordered input-primary flex items-center gap-2" required>
+      <button type="submit" class="btn btn-primary text-white">Login</button>
     </form>
     
-    <button v-if="loggedIn" @click="logout">Logout</button>
-  </v-container>
+    <button v-if="loggedIn" class="btn" @click="logout">Logout</button>
+    </div>
 </template>
 
 <script setup>

@@ -10,32 +10,14 @@ const saveRpc = () => {
   rpcValue.value = ref('');
 };
 
-// TODO fix validation for ip address, v-text-field v-model rpcValue.value
-// const numberRule = (value) => {
-//   return true
-//   const isValid = /^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$/.test(value); // Use regex to check if value contains only digits
-//   return isValid || 'Only IP addresses are allowed';
-// };
 </script>
 
 <template>
-  <v-layout>
-    <v-row>
-      <v-col>
-    <v-container class="mx-auto pa-6">
-      <v-card-title>
-        RPC HOST
-      </v-card-title>
-            <v-text-field v-model="rpcValue.value"
-                label="Enter Your RPCd"
-                type="string" ></v-text-field>
-            <v-btn @click="saveRpc" class="btn">Save</v-btn>    
-    </v-container>
-    </v-col>
-    </v-row>
-    </v-layout>
+  <div class="grid-col-1 flex flex-col space-y-4">
+    <div class="flex flex-col space-y-4">
+        <h2>RPC HOST</h2>
+        <input v-model="rpcValue" placeholder="Enter Your RPC" type="text" class="input input-bordered input-primary flex items-center gap-2"/>
+        <button @click="saveRpc" class="btn btn-primary">Save</button>
+      </div>
+    </div>
 </template>
-
-<style scoped>
-
-</style>

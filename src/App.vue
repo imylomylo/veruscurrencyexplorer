@@ -4,10 +4,10 @@
   <v-app>
   <TheNavigation></TheNavigation>
   <v-main>
-  <v-container>
+    <div class="container mx-auto justify-center flex mt-10 ">
     <router-view>
     </router-view>
-  </v-container>
+    </div>
   </v-main>
 </v-app>
 </template>
@@ -17,10 +17,5 @@ import TheNavigation from './components/TheNavigation.vue';
 
 </script>
 <style scoped>
-.grad-class{
-  background: #3a7bd5;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #3a6073, #3a7bd5);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #3a6073, #3a7bd5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-}
 </style>

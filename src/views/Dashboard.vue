@@ -7,15 +7,11 @@ const sampa = ref(sampleData.sample);
 </script>
 
 <template>
-  <v-layout>
-    <v-row>
-      <v-col>
+  <div class="columns-1">
+    <article class="prose lg:prose-xl" >
     <h1>Dashboard</h1>
-    <v-container class="mx-auto pa-6">
-      <v-card-title>
+    <p>
         Lorem Ispetem
-      </v-card-title>
-      <v-card-text>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
         Harum maiores modi quidem veniam, expedita quis laboriosam, ullam facere 
         adipisci,iusto, <b> {{ sampa }}</b>
@@ -23,13 +19,8 @@ const sampa = ref(sampleData.sample);
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum 
         maiores modi quidem veniam, expedita quis laboriosam, ullam facere adipisci, iusto, 
         voluptate sapiente corrupti asperiores rem nemo numquam fuga ab at.
-      </v-card-text>
-    </v-container>
-    </v-col>
-    </v-row>
-    </v-layout>
+        </p>
+    </article>
+</div>
 </template>
 
-<style scoped>
-
-</style>
