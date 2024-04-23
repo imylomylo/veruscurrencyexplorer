@@ -14,15 +14,15 @@ const headers = [
   { title: 'Options' }
 ];
 const options = [
-  { value: 1, label: 'OPTION_FRACTIONAL' },
-  { value: 2, label: 'OPTION_ID_ISSUANCE' },
-  { value: 4, label: 'OPTION_ID_STAKING' },
-  { value: 8, label: 'OPTION_ID_REFERRALS' },
-  { value: 16, label: 'OPTION_ID_REFERRALREQUIRED' },
-  { value: 32, label: 'OPTION_TOKEN' },
-  { value: 128, label: 'OPTION_GATEWAY' },
-  { value: 256, label: 'OPTION_PBAAS' },
-  { value: 512, label: 'OPTION_PBAAS_CONVERTER' }
+  { value: 1, label: 'FRACTIONAL' },
+  { value: 2, label: 'ID_ISSUANCE' },
+  { value: 4, label: 'ID_STAKING' },
+  { value: 8, label: 'ID_REFERRALS' },
+  { value: 16, label: 'ID_REFERRALREQUIRED' },
+  { value: 32, label: 'TOKEN' },
+  { value: 128, label: 'GATEWAY' },
+  { value: 256, label: 'PBAAS' },
+  { value: 512, label: 'PBAAS_CONVERTER' }
 ];
 const selectedCurrency = ref(null);
 const currencyDetails = ref('');
@@ -35,29 +35,31 @@ const handleCurrencyClick = (currency) => {
   selectedCurrency.value = currency;
 };
 
-// Function to filter currencies based on selected options
+const defaultCurrencies = ref([]) // HERE
+
 const filterCurrencies = () => {
   if (selectedOptions.value.length === 0) {
-    return currencies.value; // Return all currencies if no options are selected
+    return defaultCurrencies.value // HERE
   }
 
-  return currencies.value.filter(currency => {
+  return defaultCurrencies.value.filter(currency => {
     return selectedOptions.value.every(option => {
-      // Check if the currency has the selected option
-      return (currency.currencydefinition.options & option) !== 0;
-    });
-  });
-};
+      return (currency.currencydefinition.options & option) !== 0
+    })
+  })
+}
 
 onMounted(async () => {
-  info.value = await currencyHelpers.getInfo();
-  currencies.value = await currencyHelpers.listCurrencies();
-});
+  info.value = await currencyHelpers.getInfo()
+  defaultCurrencies.value = await currencyHelpers.listCurrencies()
+  currencies.value = filterCurrencies();
+})
 
-// Watch for changes in selectedOptions and filter currencies accordingly
-watch(selectedOptions, () => {
+watch(selectedOptions, (newValue) => {
+  console.log('selectedOptions changed:', newValue);
   currencies.value = filterCurrencies();
 });
+
 </script>
 
 <template>
