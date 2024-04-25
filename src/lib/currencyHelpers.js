@@ -1,7 +1,7 @@
 import { VerusdRpcInterface } from 'verusd-rpc-ts-client';
 
 // const RPC_HOST = "https://api.verus.services"
-const RPC_HOST = "https://rpc.vrsc.komodefi.com"
+const RPC_HOST = "https://rpc.vrsctest.komodefi.com"
 const verusd = new VerusdRpcInterface("iJhCezBExJHvtyH3fGhNnt2NhU4Ztkf2yq", RPC_HOST);
 
 export async function getInfo() {

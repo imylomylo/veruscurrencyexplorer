@@ -14,9 +14,9 @@
 </svg>
       </div>
       <ul tabindex="0" class="dropdown-content z-[1] menu outline p-2 shadow bg-primary rounded-box w-52">
-            <li><a :class="{ 'active-menu': $route.path === '/' }" href="/">Dashboard</a></li>
-            <li><a :class="{ 'active-menu': $route.path === '/currencies' }" href="/currencies">Currencies</a></li>
-            <li><a :class="{ 'active-menu': $route.path === '/settings' }" href="/settings">Settings</a></li>
+            <li><router-link to="/">Dashboard</router-link></li>
+            <li><router-link to="/currencies">Currencies</router-link></li>
+            <li><router-link to="/settings">Settings</router-link></li>
       </ul>
     <button class="btn btn-outline">
       <a :class="{ 'active-menu': $route.path === '/login' }" href="/login">

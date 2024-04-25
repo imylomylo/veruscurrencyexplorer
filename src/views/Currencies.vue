@@ -9,7 +9,6 @@ const headers = [
   { title: 'ID' },
   { title: 'ID rego fee' },
   { title: 'ID import fee' },
-  { title: 'Converter Name' },
   { title: 'Proof Protocol' },
   { title: 'Options' }
 ];
@@ -63,44 +62,52 @@ watch(selectedOptions, (newValue) => {
 </script>
 
 <template>
-  <div class="overflow-x-auto columns-1">
-    <div class="collapse collapse-arrow bg-base-200">
-      <input type="checkbox" /> 
+  <div class="overflow-x-auto h-52">
+    <div class="collapse collapse-arrow ">
+      <input type="checkbox" />
       <div class="collapse-title text-xl font-medium">
-         Filter Currencies
+        Filter Currencies
       </div>
-  <div class="collapse-content"> 
-      <div class="form-control border mt-1 pt-1">
+      <div class="collapse-content">
+        <div class="form-control border mt-1 pt-1">
           <label v-for="(option, index) in options" :key="index">
-           <input type="checkbox" :value="option.value" class="checkbox checkbox-primary" v-model="selectedOptions"> <span class="label-text">{{ option.label }}</span>
+            <input type="checkbox" :value="option.value" class="checkbox checkbox-primary" v-model="selectedOptions">
+            <span class="label-text">{{ option.label }}</span>
           </label>
+        </div>
       </div>
-  </div>
     </div>
-    <div>
-      <table class="table">
+      <table class="table table-xs table-pin-rows">
         <thead>
           <tr>
             <th v-for="header in headers" :key="header.title">{{ header.title }}</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="hover" v-for="currency in currencies" :key="currency.currencydefinition.currencyid">
-            <td @click="handleCurrencyClick(currency)">{{ currency.currencydefinition.fullyqualifiedname }}</td>
+          <tr @click="handleCurrencyClick(currency)" class="hover" v-for="currency in currencies"
+            :key="currency.currencydefinition.currencyid">
+            <td>{{ currency.currencydefinition.fullyqualifiedname }}</td>
             <td>{{ currency.currencydefinition.currencyid }}</td>
             <td>{{ currency.currencydefinition.idregistrationfees }}</td>
             <td>{{ currency.currencydefinition.idimportfees }}</td>
-            <td>{{ currency.currencydefinition.gatewayconvertername }}</td>
             <td>{{ currency.currencydefinition.proofprotocol }}</td>
             <td>{{ currency.currencydefinition.options }}</td>
           </tr>
         </tbody>
       </table>
-    </div>
-    <div v-if="selectedCurrency">
+      </div>
+    <div v-if="selectedCurrency" class="overflow-auto">
       <h2>Selected Currency Details</h2>
-      <textarea rows="5" cols="50">{{ selectedCurrency }}</textarea>
-    </div>
-  </div>
-</template>
+      <pre class="w-full">{{ selectedCurrency.bestcurrencystate.currencyid }}</pre>
+      <pre class="w-full">{{ selectedCurrency.currencydefinition.fullyqualifiedname }}</pre>
+      <pre class="w-full">{{ selectedCurrency.currencydefinition.idregistrationfees }}</pre>
+      <pre class="w-full">{{ selectedCurrency.currencydefinition.idreferrallevels }}</pre>
+      <pre class="w-full">{{ selectedCurrency.currencydefinition.idimportfees }}</pre>
+      <pre class="w-full">{{ selectedCurrency.currencydefinition.preallocations }}</pre>
+      <pre class="w-full">{{ selectedCurrency.bestcurrencystate.reservecurrencies }}</pre>
 
+
+      <!-- <pre class="w-full">{{ selectedCurrency }}</pre> -->
+      <!-- <pre class="w-full">{{ selectedCurrency }}</pre> -->
+    </div>
+</template>
