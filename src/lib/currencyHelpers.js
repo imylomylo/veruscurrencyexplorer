@@ -1,7 +1,7 @@
 import { VerusdRpcInterface } from 'verusd-rpc-ts-client';
 
 // const RPC_HOST = "https://api.verus.services"
-const RPC_HOST = "https://rpc.vrsc.komodefi.com"
+const RPC_HOST = "https://rpc.vrsctest.komodefi.com"
 const verusd = new VerusdRpcInterface("iJhCezBExJHvtyH3fGhNnt2NhU4Ztkf2yq", RPC_HOST);
 
 export async function getInfo() {
@@ -17,13 +17,13 @@ export async function getInfo() {
     }
 }
 
-export async function getCurrency() {
+export async function getCurrency(currencyName) {
     try {
-        console.log("getCurrency")
+        console.log("getCurrency: " + currencyName)
         // TODO removed await; how to make it asynchronous & what benefit
         // const res = await verusd.getCurrency('bridge.veth');
-        const res = await verusd.getCurrency('bridge.veth');
-        console.log(res.result)
+        const res = await verusd.getCurrency(currencyName);
+        // console.log(JSON.stringify(res.result, null, 2))
         return res.result
     } catch (error){
         console.log("getCurrency error")
