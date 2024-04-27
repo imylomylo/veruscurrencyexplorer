@@ -1,7 +1,7 @@
 // router.js
 
 import { createRouter, createWebHistory } from 'vue-router';
-import Dashboard from '../views/Dashboard.vue';
+// import Dashboard from '../views/Dashboard.vue';
 import Settings from '../views/Settings.vue';
 import CurrenciesVue from '../views/Currencies.vue';
 import Login from '../views/Login.vue'
@@ -10,8 +10,8 @@ const routes = [
   {
     path: '/',
     name: 'Dashboard',
-    component: Dashboard,
-    meta: {viewName: "Dashboard"}
+    component: CurrenciesVue,
+    meta: {viewName: "Currencies"}
   },
   {
     path: '/settings',
